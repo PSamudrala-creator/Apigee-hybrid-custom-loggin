@@ -1,0 +1,77 @@
+<MessageLogging name="Log-To-Splunk-JSON">
+    <Syslog>
+        <Message>
+{
+  "timestamp": "{system.time}",
+  "organization": "{organization.name}",
+  "environment": "{environment.name}",
+  "proxy_name": "{apiproxy.name}",
+  "revision": "{apiproxy.revision}",
+  "proxy_basepath": "{proxy.basepath}",
+  "proxy_pathsuffix": "{proxy.pathsuffix}",
+  "proxy_client_ip": "{client.ip}",
+  "apigee_message_id": "{messageid}",
+  "apigee_correlation_id": "{x-apigee-correlation-id}",
+  "apigee_region": "{system.region.name}",
+
+  "request": {
+    "method": "{request.verb}",
+    "uri": "{request.uri}",
+    "path": "{request.path}",
+    "query": "{request.querystring}",
+    "headers": {
+      "user-agent": "{request.header.user-agent}",
+      "x-request-id": "{request.header.x-request-id}",
+      "x-client-id": "{request.header.x-api-key}"
+    },
+    "size_bytes": "{request.header.Content-Length}",
+    "received_time": "{client.received.start.timestamp}"
+  },
+
+  "response": {
+    "status_code": "{response.status.code}",
+    "reason_phrase": "{response.reason.phrase}",
+    "size_bytes": "{response.header.Content-Length}",
+    "sent_time": "{client.sent.end.timestamp}"
+  },
+
+  "target": {
+    "host": "{target.host}",
+    "url": "{target.url}",
+    "status_code": "{target.response.status.code}",
+    "reason_phrase": "{target.response.reason.phrase}",
+    "latency_ms": "{target.response.time}",
+    "dns_time_ms": "{target.dns.time}",
+    "connect_time_ms": "{target.connect.time}"
+  },
+
+  "timing": {
+    "total_client_time_ms": "{system.timestamp}",
+    "request_processing_time_ms": "{request.processing.time}",
+    "target_processing_time_ms": "{target.processing.time}",
+    "total_response_time_ms": "{system.total.response.time}"
+  },
+
+  "error": {
+    "has_fault": "{fault.name}",
+    "fault_name": "{fault.name}",
+    "fault_code": "{fault.code}",
+    "fault_policy_name": "{fault.policy.name}",
+    "fault_policy_type": "{fault.policy.type}",
+    "fault_reason": "{fault.reason}",
+    "fault_flow": "{fault.flow.name}"
+  },
+
+  "analytics": {
+    "client_received_start_timestamp": "{client.received.start.timestamp}",
+    "client_received_end_timestamp": "{client.received.end.timestamp}",
+    "target_sent_start_timestamp": "{target.sent.start.timestamp}",
+    "target_received_end_timestamp": "{target.received.end.timestamp}"
+  }
+}
+        </Message>
+        <Host>splunk-forwarder.molina.mhc</Host>
+        <Port>514</Port>
+        <Protocol>UDP</Protocol>
+    </Syslog>
+</MessageLogging>
