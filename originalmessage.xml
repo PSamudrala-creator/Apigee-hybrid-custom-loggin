@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessageLogging async="false" continueOnError="false" enabled="true" name="ML-Splunk-JSON">
+    <DisplayName>ML-Splunk-JSON</DisplayName>
+
+    <File>
+        <Message>{
+  "ClientCorrelationID":"{clientCorrelationID}",
+  "ApigeeMessageID":"{messageid}",
+  "ApigeeCorrelationID":"{apigee.correlation.id}",
+  "OrganizationName":"{organization.name}",
+  "EnvironmentName":"{environment.name}",
+
+  "ProxyName":"{apiproxy.name}",
+  "ProxyRevision":"{apiproxy.revision}",
+  "ProxyBasepath":"{proxy.basepath}",
+  "ProxyPathSuffix":"{proxy.pathsuffix}",
+
+  "DeveloperAppName":"{DeveloperAppName}",
+  "ProductName":"{apiproduct.name}",
+
+  "RequestVerb":"{request.verb}",
+  "RequestPath":"{request.path}",
+  "RequestContentLength":"{RequestContentLength}",
+
+  "TargetURL":"{target.url}",
+  "TargetServerName":"{targetServerName}",
+  "TargetResponseCode":"{target.response.status.code}",
+
+  "ApigeeHTTPStatusCode":"{message.status.code}",
+  "AnyERROR":"{is.error}",
+  "ErrorReasonPhrase":"{error.reason.phrase}",
+  "ErrorContent":{ErrorContent},
+
+  "TotalTime":"{TotalTime}",
+  "TotalTime_ms":"{TotalTime_ms}",
+  "TotalProxyTime":"{TotalProxyTime}",
+  "TotalProxyTime_ms":"{TotalProxyTime_ms}",
+  "TotalTargetTime":"{TotalTargetTime}",
+  "TotalTargetTime_ms":"{TotalTargetTime_ms}",
+
+  "ClientSSLEnabled":"{ClientMTLSEnabled}",
+  "BackendSSLEnabled":"{BackendMTLSEnabled}",
+
+  "Timestamp":"{RequestEndTime}"
+}</Message>
+
+        <FileName>splunk-apigee.log</FileName>
+
+        <FileRotationOptions rotateFileOnStartup="true">
+            <FileRotationType>TIME_SIZE</FileRotationType>
+            <MaxFileSizeInMB>10</MaxFileSizeInMB>
+            <MaxFilesToRetain>5</MaxFilesToRetain>
+            <RotationFrequency unit="minute">5</RotationFrequency>
+        </FileRotationOptions>
+    </File>
+</MessageLogging>
